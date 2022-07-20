@@ -1,10 +1,7 @@
-package com.example.demo.model.enity;
+package com.example.demo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,12 +13,8 @@ import lombok.Data;
 @Table(name = "Skill")
 @Data
 @AllArgsConstructor
-public class Skill {
+public class SkillEntity extends BaseEntity<Long>{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
 	@Column(name ="name")
 	private String name;
 	
@@ -33,5 +26,5 @@ public class Skill {
 	
 	@ManyToOne
 	@JoinColumn(name ="resume_id")
-	private Resume resume;
+	private ResumeEntity resume;
 }

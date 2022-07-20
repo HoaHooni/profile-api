@@ -1,12 +1,11 @@
-package com.example.demo.model.enity;
+package com.example.demo.domain;
 
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,20 +16,20 @@ import lombok.Data;
 @Table(name = "Resume")
 @Data
 @AllArgsConstructor
-public class Resume {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+public class ResumeEntity extends BaseEntity<Long>{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
-	private Set<Education> educations;
+	private Set<EducationEnity> educations;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
-	private Set<Work> works;
+	private Set<WorkEntity> works;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
-	private Set<Skill> skills;
+	private Set<SkillEntity> skills;
+	
+	@ManyToOne
+	@JoinColumn(name ="user_id")
+	private UserEntity user;
 
 
 }

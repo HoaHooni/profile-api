@@ -1,13 +1,10 @@
-package com.example.demo.model.enity;
+package com.example.demo.domain;
 
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,14 +12,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
-@Table(name = "Main")
+@Table(name = "User")
 @Data
 @AllArgsConstructor
-public class Main {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+public class UserEntity extends BaseEntity<Long>{
 
 	@Column(name = "name")
 	private String name;
@@ -69,7 +62,12 @@ public class Main {
 	@Column(name = "website")
 	private String website;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "main")
-	private List<Social> socials; 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<SocialEntity> socials; 
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<ResumeEntity> resumes; 
+//	?
+	
 
 }

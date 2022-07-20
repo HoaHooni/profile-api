@@ -1,11 +1,8 @@
-package com.example.demo.model.enity;
+package com.example.demo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,12 +14,8 @@ import lombok.Data;
 @Table(name = "Social")
 @Data
 @AllArgsConstructor
-public class Social {
+public class SocialEntity extends BaseEntity<Long>{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
 	@Column(name = "name")
 	private String name;
 	
@@ -33,6 +26,6 @@ public class Social {
 	private String className;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "main_id")
-	private Main main;
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
 }
