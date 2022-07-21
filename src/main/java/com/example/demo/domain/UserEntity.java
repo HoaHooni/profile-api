@@ -29,8 +29,8 @@ public class UserEntity extends BaseEntity<Long>{
 	@Column(name = "bio")
 	private String bio;
 
-	@Column(name = "contactmessage")
-	private String contactmessage;
+	@Column(name = "contact_message")
+	private String contactMessage;
 
 	@Column(name = "email")
 	private String email;

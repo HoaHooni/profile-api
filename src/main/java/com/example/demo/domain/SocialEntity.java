@@ -22,8 +22,8 @@ public class SocialEntity extends BaseEntity<Long>{
 	@Column(name = "url")
 	private String url;
 	
-	@Column(name = "class_name")
-	private String className;
+	@Column(name = "icon")
+	private String icon;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")

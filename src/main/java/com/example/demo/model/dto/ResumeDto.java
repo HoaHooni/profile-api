@@ -18,16 +18,14 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class ResumeDto extends BaseDto<Long> {
 
-	private List<EducationDto> educations;
+	private  List<EducationDto> educations;
 
 	private List<WorkDto> works;
 
 	private List<SkillDto> skills;
 
-	private UserDto user;
-
 	public static ResumeDto convertToDto(ResumeEntity entity) {
-
+		if(entity == null) return null;
 		return ResumeDto.builder().educations(EducationDto.convertToDtos(entity.getEducations().stream().toList()))
 				.works(WorkDto.convertToDtos(entity.getWorks().stream().toList()))
 				.skills(SkillDto.convertToDto(entity.getSkills().stream().toList()))
@@ -35,7 +33,7 @@ public class ResumeDto extends BaseDto<Long> {
 	}
 
 	public static List<ResumeDto> convertToDtos(List<ResumeEntity> entity) {
-
+		if(entity == null || entity.size() == 0) return null;
 		List<ResumeDto> resumeDtos = entity.stream().map(item -> ResumeDto.convertToDto(item)).toList();
 		return resumeDtos;
 	}
