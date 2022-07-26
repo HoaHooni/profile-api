@@ -6,15 +6,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "Education")
 @Data
 @NoArgsConstructor
+@SuperBuilder
 public class EducationEnity extends BaseEntity<Long>{
 
 	@Column(name = "school")

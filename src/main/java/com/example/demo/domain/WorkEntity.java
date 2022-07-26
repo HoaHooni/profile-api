@@ -8,11 +8,13 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "Work")
 @Data
 @AllArgsConstructor
+@SuperBuilder
 public class WorkEntity extends BaseEntity<Long>{
 
 	@Column(name ="company")

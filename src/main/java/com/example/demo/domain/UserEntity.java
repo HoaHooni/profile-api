@@ -9,13 +9,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "User")
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends BaseEntity<Long>{
+@SuperBuilder
+public class UserEntity extends BaseEntity<Long> {
 
 	@Column(name = "name")
 	private String name;
@@ -61,13 +67,15 @@ public class UserEntity extends BaseEntity<Long>{
 
 	@Column(name = "website")
 	private String website;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<SocialEntity> socials;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<ResumeEntity> resumes;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<SocialEntity> socials; 
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<ResumeEntity> resumes; 
-//	?
-	
+	private List<ProjectEntity> projects;
+
 
 }

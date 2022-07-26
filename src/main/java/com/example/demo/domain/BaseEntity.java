@@ -1,6 +1,10 @@
 package com.example.demo.domain;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,39 +13,40 @@ import javax.persistence.MappedSuperclass;
 import com.example.demo.common.EStatus;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class BaseEntity<T> {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private T id;
-	
+
 	@Column(name = "createAt")
 	@CreatedDate
-	private Long createAt;
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date createAt;
+
 	@Column(name = "updateAt")
-	@CreatedDate
-	private Long upateAt;
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date upateAt;
+
 	@Column(name = "createBy")
-	@CreatedDate
 	private String createBy;
-	
+
 	@Column(name = "updateBy")
-	@CreatedDate
 	private String updateBy;
-	
-	@Column(name = "status")
-	private EStatus stattus;
+
+	@Column(name = "status",length = 30, columnDefinition = "varchar(30) default 'ACTIVE'")
+	@Enumerated(value = EnumType.STRING)
+	private EStatus status = EStatus.ACTIVE;
 }
