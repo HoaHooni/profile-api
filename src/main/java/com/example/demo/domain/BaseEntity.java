@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -34,11 +34,11 @@ public class BaseEntity<T> {
 	@Column(name = "createAt")
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date createAt;
+	private Timestamp createAt;
 
 	@Column(name = "updateAt")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date upateAt;
+	private Timestamp upateAt;
 
 	@Column(name = "createBy")
 	private String createBy;
@@ -48,5 +48,7 @@ public class BaseEntity<T> {
 
 	@Column(name = "status",length = 30, columnDefinition = "varchar(30) default 'ACTIVE'")
 	@Enumerated(value = EnumType.STRING)
-	private EStatus status = EStatus.ACTIVE;
+	private EStatus status;
+	
+	
 }
