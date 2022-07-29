@@ -35,7 +35,9 @@ public class ProjectDto extends BaseDto<Long> {
 			return null;
 		return ProjectDto.builder().title(entity.getTitle()).description(entity.getDescription())
 				.responisble(entity.getResponisble()).langages(entity.getLangages()).other(entity.getOther())
-				.dateFrom(entity.getDateFrom()).dateTo(entity.getDateTo()).build();
+				.dateFrom(entity.getDateFrom()).dateTo(entity.getDateTo()).id(entity.getId())
+				.createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+				.updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
 	}
 
 	public static List<ProjectDto> convertToDtos(List<ProjectEntity> entitys) {
@@ -43,5 +45,22 @@ public class ProjectDto extends BaseDto<Long> {
 			return null;
 		List<ProjectDto> projectDtos = entitys.stream().map(item -> ProjectDto.convertToDto(item)).toList();
 		return projectDtos;
+	}
+
+	public static ProjectEntity convertToEntity(ProjectDto projectDto) {
+		if (projectDto == null)
+			return null;
+		return ProjectEntity.builder().title(projectDto.getTitle()).description(projectDto.getDescription())
+				.responisble(projectDto.getResponisble()).langages(projectDto.getLangages())
+				.other(projectDto.getOther()).dateFrom(projectDto.getDateFrom()).dateTo(projectDto.getDateTo())
+				.id(projectDto.getId()).createAt(projectDto.getCreateAt()).upateAt(projectDto.getUpateAt())
+				.createBy(projectDto.getCreateBy()).updateBy(projectDto.getUpdateBy()).status(projectDto.getStatus())
+				.build();
+	}
+
+	public static List<ProjectEntity> convertToEntities(List<ProjectDto> projectDtos) {
+		if (projectDtos == null || projectDtos.size() == 0)
+			return null;
+		return projectDtos.stream().map(item -> ProjectDto.convertToEntity(item)).toList();
 	}
 }

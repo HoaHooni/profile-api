@@ -6,9 +6,14 @@ import com.example.demo.domain.WorkEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class WorkDto extends BaseDto<Long> {
@@ -29,14 +34,29 @@ public class WorkDto extends BaseDto<Long> {
 		if (entity == null)
 			return null;
 		return WorkDto.builder().company(entity.getCompany()).title(entity.getTitle()).yearStart(entity.getYearStart())
-				.yearEnd(entity.getYearEnd()).description(entity.getDescription()).build();
+				.yearEnd(entity.getYearEnd()).description(entity.getDescription()).id(entity.getId())
+				.createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+				.updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
 	}
 
 	public static List<WorkDto> convertToDtos(List<WorkEntity> entity) {
 		if (entity == null || entity.size() == 0)
 			return null;
-		List<WorkDto> workDtos = entity.stream().map(item -> WorkDto.convertToDto(item)).toList();
-		return workDtos;
+		return entity.stream().map(item -> WorkDto.convertToDto(item)).toList();
 	}
 
+	public static WorkEntity convertToEntity(WorkDto workDto) {
+		if (workDto == null)
+			return null;
+		return WorkEntity.builder().company(workDto.getCompany()).title(workDto.getTitle())
+				.yearStart(workDto.getYearStart()).yearEnd(workDto.getYearEnd()).description(workDto.getDescription())
+				.id(workDto.getId()).createAt(workDto.getCreateAt()).upateAt(workDto.getUpateAt())
+				.createBy(workDto.getCreateBy()).updateBy(workDto.getUpdateBy()).status(workDto.getStatus()).build();
+	}
+
+	public static List<WorkEntity> convertToEnities(List<WorkDto> workDtos) {
+		if (workDtos == null || workDtos.size() == 0)
+			return null;
+		return workDtos.stream().map(item -> WorkDto.convertToEntity(item)).toList();
+	}
 }
