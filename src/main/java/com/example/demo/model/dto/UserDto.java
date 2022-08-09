@@ -73,8 +73,7 @@ public class UserDto extends BaseDto<Long> {
 				.image(userDto.getImage()).id(userDto.getId()).bio(userDto.getBio())
 				.contactMessage(userDto.getContactMessage()).email(userDto.getEmail()).phone(userDto.getPhone())
 				.github(userDto.getGithub()).project(userDto.getProject()).facebook(userDto.getFacebook())
-				.linkedin(userDto.getLinkedin()).website(userDto.getWebsite())
-				.socials(SocialDto.convertToEntities(userDto.getSocials())).street(userDto.getAddress().getStreet())
+				.linkedin(userDto.getLinkedin()).website(userDto.getWebsite()).street(userDto.getAddress().getStreet())
 				.city(userDto.getAddress().getCity()).country(userDto.getAddress().getCountry()).build();
 	}
 

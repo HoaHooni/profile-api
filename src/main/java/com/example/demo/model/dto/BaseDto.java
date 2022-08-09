@@ -1,6 +1,7 @@
 package com.example.demo.model.dto;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 import javax.persistence.MappedSuperclass;
 
@@ -20,7 +21,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @MappedSuperclass
 @SuperBuilder
-public class BaseDto<T> {
+public abstract class BaseDto<T> {
 	
 	private T id;
 	
@@ -33,5 +34,23 @@ public class BaseDto<T> {
 	private String updateBy;
 	
 	private EStatus status;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(createAt, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BaseDto other = (BaseDto) obj;
+		return Objects.equals(id, other.id) && Objects.equals(createAt, other.createAt);
+	}
+
 	
 }
