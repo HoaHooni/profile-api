@@ -64,14 +64,15 @@ public class SocialServiceImp implements ISocialService {
 	public List<SocialDto> updateList(List<SocialDto> dtos) {
 		if (dtos == null || dtos.size() == 0)
 			return null;
-		List<SocialDto> addSocialDtos = new ArrayList<>();
-		dtos.forEach(item -> {
-			if(!socialRepository.existsById(item.getId())) {
-				addSocialDtos.add(item);
-			}
-		});
-		dtos.stream().filter(item -> socialRepository.existsById(item.getId()));
-		return null;
+//		List<SocialDto> addSocialDtos = new ArrayList<>();
+//		dtos.forEach(item -> {
+//			if(socialRepository.existsById(item.getId())) {
+//				item.setId(null)
+//			}
+//		});
+		List<SocialDto> result = SocialDto
+				.convertToDtos(socialRepository.saveAll(SocialDto.convertToEntities(dtos, null)));
+		return result;
 	}
 
 	@Override

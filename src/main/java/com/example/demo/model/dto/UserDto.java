@@ -47,6 +47,12 @@ public class UserDto extends BaseDto<Long> {
 
 	private List<SocialDto> socials;
 
+	private List<SocialDto> createSocials;
+
+	private List<SocialDto> updateSocials;
+
+	private List<SocialDto> deleteSocials;
+
 	public static UserDto convertToDto(UserEntity entity) {
 		if (entity == null)
 			return null;

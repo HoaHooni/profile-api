@@ -40,7 +40,7 @@ public class UserServiceImp implements IUserService {
 
 		UserEntity userEntity = userRepository.save(UserDto.convertToEntity(dto));
 		if (userEntity != null) {
-			List<SocialDto> socialDtos = dto.getSocials();
+			List<SocialDto> socialDtos = dto.getCreateSocials();
 			List<SocialEntity> socialEntities = socialRepository
 					.saveAll(SocialDto.convertToEntities(socialDtos, userEntity.getId()));
 			if (socialEntities != null && socialEntities.size() != 0) {
@@ -61,17 +61,35 @@ public class UserServiceImp implements IUserService {
 	@Override
 	public UserDto update(UserDto dto) {
 
-		if (socialRepository.existsByUserId(dto.getId())) {
+		if (dto == null || !socialRepository.existsByUserId(dto.getId())) {
 			return null;
 		}
-
-		return null;
+		List<SocialDto> createSocialDtos = dto.getCreateSocials();
+		
+		socialRepository.saveAll(SocialDto.convertToEntities(createSocialDtos, dto.getId()));
+		
+		List<SocialDto> updateSocialDtos = dto.getUpdateSocials();
+		updateSocialDtos.forEach(item -> {
+			if(socialRepository.existsById(item.getId())) {
+				socialRepository.save(SocialDto.convertToEntity(item, dto.getId()));
+			}
+		});
+		
+		List<SocialDto> deleteSocialDtos = dto.getDeleteSocials();
+		deleteSocialDtos.forEach(item -> {
+			if(socialRepository.existsById(item.getId())) {
+				socialRepository.deleteById(item.getId());
+			}
+		});
+		
+		return UserDto.convertToDto(userRepository.getById(dto.getId()));
 	}
 
 	@Override
 	public List<UserDto> updateList(List<UserDto> dtos) {
-		// TODO Auto-generated method stub
+		if(dtos == null || dtos.size() != 0)
 		return null;
+		return dtos.stream().map(item -> update(item)).toList();
 	}
 
 	@Override
