@@ -26,7 +26,10 @@ public class SkillEntity extends BaseEntity<Long> {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "resume_id")
+	private Long resumeId;
+
 	@ManyToOne
-	@JoinColumn(name = "resume_id")
+	@JoinColumn(name = "resume_id", insertable = false, updatable = false)
 	private ResumeEntity resume;
 }

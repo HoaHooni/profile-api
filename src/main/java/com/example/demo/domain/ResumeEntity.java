@@ -25,7 +25,7 @@ public class ResumeEntity extends BaseEntity<Long> {
 	private String skillMessage;
 
 	@Column(name = "user_id")
-	private long userId;
+	private Long userId;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
 	private List<EducationEnity> educations;

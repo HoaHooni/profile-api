@@ -1,19 +1,29 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.dto.EducationDto;
+import com.example.demo.request.AddProfileRequest;
+import com.example.demo.response.ProfileResponse;
+import com.example.demo.service.IProfileService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin/inventory-details")
+@RequestMapping("/profile")
 public class ProfileController {
+	@Autowired
+	private IProfileService profileService;
 
-	@GetMapping
-	public ResponseEntity getProfile(long id) {
-		
-		return null;
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ProfileResponse> getProfile(@PathVariable Long id) {
+		return new ResponseEntity<ProfileResponse>(profileService.getProfile(id), HttpStatus.OK);
 	}
+
+	@PostMapping
+	public ResponseEntity<ProfileResponse> addProfile(@RequestBody AddProfileRequest request) {
+		return new ResponseEntity<ProfileResponse>(profileService.addProfile(request), HttpStatus.OK);
+	}
+
+
 }

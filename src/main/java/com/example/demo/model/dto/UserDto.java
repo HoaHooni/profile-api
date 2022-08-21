@@ -1,6 +1,7 @@
 package com.example.demo.model.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.catalina.User;
 
@@ -47,7 +48,7 @@ public class UserDto extends BaseDto<Long> {
 
 	private List<SocialDto> socials;
 
-	private List<SocialDto> createSocials;
+	private List<SocialDto> addSocials;
 
 	private List<SocialDto> updateSocials;
 
@@ -68,7 +69,7 @@ public class UserDto extends BaseDto<Long> {
 	public static List<UserDto> convertToDtos(List<UserEntity> userEntities) {
 		if (userEntities == null || userEntities.size() == 0)
 			return null;
-		return userEntities.stream().map(item -> UserDto.convertToDto(item)).toList();
+		return userEntities.stream().map(item -> UserDto.convertToDto(item)).collect(Collectors.toList());
 	}
 
 	public static UserEntity convertToEntity(UserDto userDto) {
@@ -86,7 +87,7 @@ public class UserDto extends BaseDto<Long> {
 	public static List<UserEntity> convertToEntities(List<UserDto> userDtos) {
 		if (userDtos == null || userDtos.size() == 0)
 			return null;
-		return userDtos.stream().map(item -> UserDto.convertToEntity(item)).toList();
+		return userDtos.stream().map(item -> UserDto.convertToEntity(item)).collect(Collectors.toList());
 	}
 
 	@Getter

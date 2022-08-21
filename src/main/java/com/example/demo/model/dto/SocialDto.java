@@ -2,6 +2,7 @@ package com.example.demo.model.dto;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.example.demo.domain.SocialEntity;
 
@@ -38,7 +39,7 @@ public class SocialDto extends BaseDto<Long> {
 	public static List<SocialDto> convertToDtos(List<SocialEntity> entity) {
 		if (entity == null || entity.size() == 0)
 			return null;
-		return entity.stream().map(item -> SocialDto.convertToDto(item)).toList();
+		return entity.stream().map(item -> SocialDto.convertToDto(item)).collect(Collectors.toList());
 	}
 
 	public static SocialEntity convertToEntity(SocialDto socialDto, Long userId) {
@@ -53,7 +54,7 @@ public class SocialDto extends BaseDto<Long> {
 	public static List<SocialEntity> convertToEntities(List<SocialDto> socialDtos, Long userId) {
 		if (socialDtos == null || socialDtos.size() == 0)
 			return null;
-		return socialDtos.stream().map(item -> SocialDto.convertToEntity(item, userId)).toList();
+		return socialDtos.stream().map(item -> SocialDto.convertToEntity(item, userId)).collect(Collectors.toList());
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.example.demo.model.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.demo.domain.EducationEnity;
 
@@ -26,6 +27,8 @@ public class EducationDto extends BaseDto<Long> {
 
 	private String description;
 
+	private ResumeDto resume;
+
 	public static EducationDto convertToDto(EducationEnity entity) {
 		if (entity == null)
 			return null;
@@ -38,23 +41,24 @@ public class EducationDto extends BaseDto<Long> {
 	public static List<EducationDto> convertToDtos(List<EducationEnity> entity) {
 		if (entity == null || entity.size() == 0)
 			return null;
-		return entity.stream().map(item -> EducationDto.convertToDto(item)).toList();
+		return entity.stream().map(item -> EducationDto.convertToDto(item)).collect(Collectors.toList());
 	}
 
-	public static EducationEnity convertToEntity(EducationDto educationDto) {
+	public static EducationEnity convertToEntity(EducationDto educationDto, Long resumeId) {
 		if (educationDto == null)
 			return null;
 		return EducationEnity.builder().degree(educationDto.getDegree()).school(educationDto.getSchool())
+				.resumeId(resumeId != null ? resumeId : educationDto.getResume().getId())
 				.graduated(educationDto.getGraduated()).description(educationDto.getDescription())
 				.id(educationDto.getId()).createAt(educationDto.getCreateAt()).upateAt(educationDto.getUpateAt())
 				.createBy(educationDto.getCreateBy()).updateBy(educationDto.getUpdateBy())
 				.status(educationDto.getStatus()).build();
 	}
 
-	public static List<EducationEnity> convertToEntities(List<EducationDto> educationDtos) {
+	public static List<EducationEnity> convertToEntities(List<EducationDto> educationDtos, Long resumeId) {
 		if (educationDtos == null || educationDtos.size() == 0)
 			return null;
-		return educationDtos.stream().map(item -> EducationDto.convertToEntity(item)).toList();
+		return educationDtos.stream().map(item -> EducationDto.convertToEntity(item, resumeId)).collect(Collectors.toList());
 	}
 
 }

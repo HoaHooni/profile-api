@@ -40,17 +40,4 @@ public abstract class BaseDto<T> {
 		return Objects.hash(createAt, id);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BaseDto other = (BaseDto) obj;
-		return Objects.equals(id, other.id) && Objects.equals(createAt, other.createAt);
-	}
-
-	
 }

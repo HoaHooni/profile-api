@@ -7,13 +7,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Project")
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @SuperBuilder
 public class ProjectEntity extends BaseEntity<Long> {
@@ -28,19 +31,19 @@ public class ProjectEntity extends BaseEntity<Long> {
 	private String responisble;
 
 	@Column(name = "languages")
-	private String langages;
+	private String languages;
 
 	@Column(name = "other")
 	private String other;
 
-	@Column(name = "date_from")
-	private long dateFrom;
+	@Column(name = "from_date")
+	private Timestamp fromDate;
 
-	@Column(name = "date_to")
-	private Long dateTo;
+	@Column(name = "to_date")
+	private Timestamp toDate;
 
 	@Column(name = "user_id")
-	private long userId;
+	private Long userId;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", insertable = false, updatable = false)

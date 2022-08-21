@@ -1,14 +1,14 @@
 package com.example.demo.service.imp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.SocialDto;
 import com.example.demo.repository.SocialRepository;
 import com.example.demo.service.ISocialService;
-
+@Service
 public class SocialServiceImp implements ISocialService {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class SocialServiceImp implements ISocialService {
 	public List<SocialDto> addList(List<SocialDto> dtos) {
 		if (dtos == null || dtos.size() == 0)
 			return null;
-		dtos.stream().filter(item -> !socialRepository.existsById(item.getId())).toList();
+		dtos.stream().filter(item -> !socialRepository.existsById(item.getId()));
 		return SocialDto.convertToDtos(socialRepository.saveAll(SocialDto.convertToEntities(dtos, null)));
 	}
 
@@ -64,12 +64,6 @@ public class SocialServiceImp implements ISocialService {
 	public List<SocialDto> updateList(List<SocialDto> dtos) {
 		if (dtos == null || dtos.size() == 0)
 			return null;
-//		List<SocialDto> addSocialDtos = new ArrayList<>();
-//		dtos.forEach(item -> {
-//			if(socialRepository.existsById(item.getId())) {
-//				item.setId(null)
-//			}
-//		});
 		List<SocialDto> result = SocialDto
 				.convertToDtos(socialRepository.saveAll(SocialDto.convertToEntities(dtos, null)));
 		return result;
@@ -93,7 +87,7 @@ public class SocialServiceImp implements ISocialService {
 	@Override
 	public void deleteList(List<SocialDto> dtos) {
 		if (dtos != null && dtos.size() != 0) {
-			dtos.stream().filter(item -> socialRepository.existsById(item.getId())).toList();
+			dtos.stream().filter(item -> socialRepository.existsById(item.getId()));
 			socialRepository.deleteAll(SocialDto.convertToEntities(dtos, null));
 		}
 
@@ -102,7 +96,7 @@ public class SocialServiceImp implements ISocialService {
 	@Override
 	public void deleteByIds(List<Long> ids) {
 		if (ids != null && ids.size() != 0) {
-			ids.stream().filter(item -> socialRepository.existsById(item)).toList();
+			ids.stream().filter(item -> socialRepository.existsById(item));
 			socialRepository.deleteAllById(ids);
 		}
 
