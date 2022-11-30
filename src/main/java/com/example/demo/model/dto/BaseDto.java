@@ -1,9 +1,12 @@
 package com.example.demo.model.dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import com.example.demo.common.EStatus;
 
@@ -22,17 +25,17 @@ import lombok.experimental.SuperBuilder;
 @MappedSuperclass
 @SuperBuilder
 public abstract class BaseDto<T> {
-	
+
 	private T id;
-	
-	private Timestamp createAt;
-	
-	private Timestamp upateAt;
-	
+
+	private Long createAt;
+
+	private Long upateAt;
+
 	private String createBy;
-	
+
 	private String updateBy;
-	
+
 	private EStatus status;
 
 	@Override

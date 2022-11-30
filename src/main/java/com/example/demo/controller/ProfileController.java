@@ -25,5 +25,10 @@ public class ProfileController {
 		return new ResponseEntity<ProfileResponse>(profileService.addProfile(request), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/check")
+	public ResponseEntity<String> check() {
+		return new ResponseEntity<String>("living", HttpStatus.OK);
+	}
+
 
 }

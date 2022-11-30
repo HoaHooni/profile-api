@@ -1,24 +1,14 @@
 package com.example.demo.domain;
 
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
 import com.example.demo.common.EStatus;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 
 @MappedSuperclass
 @Data
@@ -27,28 +17,37 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class BaseEntity<T> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private T id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private T id;
 
-	@Column(name = "createAt")
-	@CreatedDate
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp createAt;
+    @Column(name = "createAt")
+    @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Long createAt;
 
-	@Column(name = "updateAt")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp upateAt;
+    @Column(name = "updateAt")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Long upateAt;
 
-	@Column(name = "createBy")
-	private String createBy;
+    @Column(name = "createBy")
+    private String createBy;
 
-	@Column(name = "updateBy")
-	private String updateBy;
+    @Column(name = "updateBy")
+    private String updateBy;
 
-	@Column(name = "status",length = 30, columnDefinition = "varchar(30) default 'ACTIVE'")
-	@Enumerated(value = EnumType.STRING)
-	private EStatus status;
-	
-	
+    @Column(name = "status", length = 30, columnDefinition = "varchar(30) default 'ACTIVE'")
+    @Enumerated(value = EnumType.STRING)
+    private EStatus status;
+
+    @PrePersist
+    public void prePersit() {
+        this.createAt = System.currentTimeMillis();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.upateAt = System.currentTimeMillis();
+    }
+
 }
