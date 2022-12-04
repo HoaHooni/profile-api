@@ -1,12 +1,12 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
+import com.example.demo.domain.WorkEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.WorkEntity;
+import java.util.List;
+
 @Repository
 public interface WorkRepository extends JpaRepository<WorkEntity, Long> {
-	List<WorkEntity> findAllByResumeId(Long resumeId);
+    List<WorkEntity> findAllByResumeId(Long resumeId);
 }

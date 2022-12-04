@@ -1,14 +1,13 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
+import com.example.demo.domain.EducationEnity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.EducationEnity;
-import com.example.demo.domain.WorkEntity;
+import java.util.List;
+
 @Repository
-public interface EducationRepository extends JpaRepository<EducationEnity, Long>{
-	List<EducationEnity> findAllByResumeId(Long resumeId);
+public interface EducationRepository extends JpaRepository<EducationEnity, Long> {
+    List<EducationEnity> findAllByResumeId(Long resumeId);
 
 }

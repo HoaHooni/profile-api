@@ -1,15 +1,14 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
+import com.example.demo.domain.SocialEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.SocialEntity;
+import java.util.List;
 
 @Repository
-public interface SocialRepository extends JpaRepository<SocialEntity, Long>{
-	List<SocialEntity> findByUserId(Long id);
-	
-	boolean existsByUserId(Long id);
+public interface SocialRepository extends JpaRepository<SocialEntity, Long> {
+    List<SocialEntity> findByUserId(Long id);
+
+    boolean existsByUserId(Long id);
 }

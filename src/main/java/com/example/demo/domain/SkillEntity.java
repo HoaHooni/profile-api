@@ -1,35 +1,35 @@
 package com.example.demo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Skill")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class SkillEntity extends BaseEntity<Long> {
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	@Column(name = "level")
-	private int level;
+    @Column(name = "level")
+    private int level;
 
-	@Column(name = "description")
-	private String description;
+    @Column(name = "description")
+    private String description;
 
-	@Column(name = "resume_id")
-	private Long resumeId;
+    @Column(name = "resume_id")
+    private Long resumeId;
 
-	@ManyToOne
-	@JoinColumn(name = "resume_id", insertable = false, updatable = false)
-	private ResumeEntity resume;
+    @ManyToOne
+    @JoinColumn(name = "resume_id", insertable = false, updatable = false)
+    private ResumeEntity resume;
 }

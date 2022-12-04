@@ -1,12 +1,12 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
+import com.example.demo.domain.ProjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.ProjectEntity;
+import java.util.List;
+
 @Repository
-public interface ProjectRepository extends JpaRepository<ProjectEntity, Long>{
-	List<ProjectEntity> findAllByUserId(Long UserId);
+public interface ProjectRepository extends JpaRepository<ProjectEntity, Long> {
+    List<ProjectEntity> findAllByUserId(Long UserId);
 }

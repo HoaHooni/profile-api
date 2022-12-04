@@ -1,36 +1,35 @@
 package com.example.demo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Social")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class SocialEntity extends BaseEntity<Long> {
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	@Column(name = "url")
-	private String url;
+    @Column(name = "url")
+    private String url;
 
-	@Column(name = "icon")
-	private String icon;
-	
-	@Column(name = "user_id")
-	private long userId;
+    @Column(name = "icon")
+    private String icon;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
-	private UserEntity user;
+    @Column(name = "user_id")
+    private long userId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private UserEntity user;
 }
