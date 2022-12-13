@@ -21,14 +21,29 @@ public class ProjectEntity extends BaseEntity<Long> {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "short-description")
+    private String shortDescription;
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "thumbnail")
+    private String thumbnail;
+
+    @Column(name = "url")
+    private String url;
+
+    @Column(name = "team-size")
+    private Integer teamSize;
+
     @Column(name = "responsible")
-    private String responisble;
+    private String responsible;
 
     @Column(name = "languages")
     private String languages;
+
+    @Column(name = "tools")
+    private String tools;
 
     @Column(name = "other")
     private String other;
@@ -43,6 +58,6 @@ public class ProjectEntity extends BaseEntity<Long> {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false, referencedColumnName = "id")
     private UserEntity user;
 }

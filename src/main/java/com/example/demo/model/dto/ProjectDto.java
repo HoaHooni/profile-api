@@ -39,7 +39,7 @@ public class ProjectDto extends BaseDto<Long> {
         if (entity == null)
             return null;
         return ProjectDto.builder().title(entity.getTitle()).description(entity.getDescription())
-                .responsible(entity.getResponisble()).languages(entity.getLanguages()).other(entity.getOther())
+                .responsible(entity.getResponsible()).languages(entity.getLanguages()).other(entity.getOther())
                 .fromDate(entity.getFromDate()).toDate(entity.getToDate()).id(entity.getId())
                 .createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
                 .updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
@@ -55,11 +55,10 @@ public class ProjectDto extends BaseDto<Long> {
         if (projectDto == null)
             return null;
         return ProjectEntity.builder().title(projectDto.getTitle()).description(projectDto.getDescription())
-                .responisble(projectDto.getResponsible()).languages(projectDto.getLanguages())
+                .responsible(projectDto.getResponsible()).languages(projectDto.getLanguages())
                 .other(projectDto.getOther()).fromDate(projectDto.getFromDate()).toDate(projectDto.getToDate())
                 .userId(userId != null ? userId : projectDto.getUserId())
-                .id(projectDto.getId()).createAt(projectDto.getCreateAt()).upateAt(projectDto.getUpateAt())
-                .createBy(projectDto.getCreateBy()).updateBy(projectDto.getUpdateBy()).status(projectDto.getStatus())
+                .id(projectDto.getId()).status(projectDto.getStatus())
                 .build();
     }
 
