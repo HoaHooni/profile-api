@@ -29,7 +29,7 @@ public class SkillDto extends BaseDto<Long> {
         if (entity == null)
             return null;
         return SkillDto.builder().name(entity.getName()).level(entity.getLevel()).description(entity.getDescription())
-                .id(entity.getId()).createAt(entity.getCreateAt()).upateAt(entity.getUpateAt())
+                .id(entity.getId()).createAt(entity.getCreateAt()).updateAt(entity.getUpateAt())
                 .createBy(entity.getCreateBy()).updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
     }
 
@@ -44,8 +44,8 @@ public class SkillDto extends BaseDto<Long> {
             return null;
         return SkillEntity.builder().name(skillDto.getName()).level(skillDto.getLevel())
                 .resumeId(resumeId != null ? resumeId : skillDto.getResume().getId())
-                .description(skillDto.getDescription()).id(skillDto.getId()).createAt(skillDto.getCreateAt())
-                .upateAt(skillDto.getUpateAt()).createBy(skillDto.getCreateBy()).updateBy(skillDto.getUpdateBy())
+                .description(skillDto.getDescription()).id(skillDto.getId())
+                .createBy(skillDto.getCreateBy()).updateBy(skillDto.getUpdateBy())
                 .status(skillDto.getStatus()).build();
     }
 

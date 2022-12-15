@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.util.Objects;
 
 
@@ -23,7 +25,7 @@ public abstract class BaseDto<T> {
 
     private Long createAt;
 
-    private Long upateAt;
+    private Long updateAt;
 
     private String createBy;
 
@@ -36,4 +38,13 @@ public abstract class BaseDto<T> {
         return Objects.hash(createAt, id);
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.createAt = System.currentTimeMillis();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updateAt = System.currentTimeMillis();
+    }
 }

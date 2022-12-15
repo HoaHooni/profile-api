@@ -32,7 +32,7 @@ public class EducationDto extends BaseDto<Long> {
             return null;
         return EducationDto.builder().degree(entity.getDegree()).school(entity.getSchool())
                 .graduated(entity.getGraduated()).description(entity.getDescription()).id(entity.getId())
-                .createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+                .createAt(entity.getCreateAt()).updateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
                 .updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
     }
 
@@ -48,7 +48,7 @@ public class EducationDto extends BaseDto<Long> {
         return EducationEnity.builder().degree(educationDto.getDegree()).school(educationDto.getSchool())
                 .resumeId(resumeId != null ? resumeId : educationDto.getResume().getId())
                 .graduated(educationDto.getGraduated()).description(educationDto.getDescription())
-                .id(educationDto.getId()).createAt(educationDto.getCreateAt()).upateAt(educationDto.getUpateAt())
+                .id(educationDto.getId())
                 .createBy(educationDto.getCreateBy()).updateBy(educationDto.getUpdateBy())
                 .status(educationDto.getStatus()).build();
     }

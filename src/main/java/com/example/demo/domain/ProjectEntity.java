@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Project")
@@ -21,7 +20,7 @@ public class ProjectEntity extends BaseEntity<Long> {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "short-description")
+    @Column(name = "short_description")
     private String shortDescription;
 
     @Column(name = "description")
@@ -33,7 +32,7 @@ public class ProjectEntity extends BaseEntity<Long> {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "team-size")
+    @Column(name = "team_size")
     private Integer teamSize;
 
     @Column(name = "responsible")
@@ -49,10 +48,10 @@ public class ProjectEntity extends BaseEntity<Long> {
     private String other;
 
     @Column(name = "from_date")
-    private Timestamp fromDate;
+    private long fromDate;
 
     @Column(name = "to_date")
-    private Timestamp toDate;
+    private long toDate;
 
     @Column(name = "user_id")
     private Long userId;

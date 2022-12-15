@@ -30,7 +30,7 @@ public class SocialDto extends BaseDto<Long> {
         if (entity == null)
             return null;
         return SocialDto.builder().name(entity.getName()).url(entity.getUrl()).icon(entity.getIcon()).id(entity.getId())
-                .createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+                .createAt(entity.getCreateAt()).updateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
                 .updateBy(entity.getUpdateBy()).status(entity.getStatus()).userId(entity.getUserId()).build();
     }
 
@@ -44,7 +44,7 @@ public class SocialDto extends BaseDto<Long> {
         if (socialDto == null)
             return null;
         return SocialEntity.builder().name(socialDto.getName()).url(socialDto.getUrl()).icon(socialDto.getIcon())
-                .id(socialDto.getId()).createAt(socialDto.getCreateAt()).upateAt(socialDto.getUpateAt())
+                .id(socialDto.getId())
                 .createBy(socialDto.getCreateBy()).updateBy(socialDto.getUpdateBy()).status(socialDto.getStatus())
                 .userId(userId != null ? userId : socialDto.getUserId()).build();
     }

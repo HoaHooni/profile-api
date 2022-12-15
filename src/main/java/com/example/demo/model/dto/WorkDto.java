@@ -34,7 +34,7 @@ public class WorkDto extends BaseDto<Long> {
             return null;
         return WorkDto.builder().company(entity.getCompany()).title(entity.getTitle()).yearStart(entity.getYearStart())
                 .yearEnd(entity.getYearEnd()).description(entity.getDescription()).id(entity.getId())
-                .createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+                .createAt(entity.getCreateAt()).updateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
                 .updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
     }
 
@@ -50,7 +50,7 @@ public class WorkDto extends BaseDto<Long> {
         return WorkEntity.builder().company(workDto.getCompany()).title(workDto.getTitle())
                 .yearStart(workDto.getYearStart()).yearEnd(workDto.getYearEnd()).description(workDto.getDescription())
                 .resumeId(resumeId != null ? resumeId : workDto.getResume().getId()).id(workDto.getId())
-                .createAt(workDto.getCreateAt()).upateAt(workDto.getUpateAt()).createBy(workDto.getCreateBy())
+                .createBy(workDto.getCreateBy())
                 .updateBy(workDto.getUpdateBy()).status(workDto.getStatus()).build();
     }
 

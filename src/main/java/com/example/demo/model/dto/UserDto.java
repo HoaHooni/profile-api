@@ -60,7 +60,9 @@ public class UserDto extends BaseDto<Long> {
                 .email(entity.getEmail()).phone(entity.getPhone()).github(entity.getGithub())
                 .project(entity.getProject()).facebook(entity.getFacebook()).linkedin(entity.getLinkedin())
                 .website(entity.getWebsite()).socials(SocialDto.convertToDtos(entity.getSocials()))
-                .address(new UserDto().new Address(entity.getStreet(), entity.getCity(), entity.getCountry())).build();
+                .socials(SocialDto.convertToDtos(entity.getSocials()))
+                .address(new UserDto().new Address(entity.getStreet(), entity.getCity(), entity.getCountry()))
+                .createAt(entity.getCreateAt()).updateAt(entity.getUpateAt()).createBy(entity.getCreateBy()).updateBy(entity.getUpdateBy()).build();
     }
 
     public static List<UserDto> convertToDtos(List<UserEntity> userEntities) {
@@ -84,7 +86,7 @@ public class UserDto extends BaseDto<Long> {
     public static List<UserEntity> convertToEntities(List<UserDto> userDtos) {
         if (userDtos == null || userDtos.size() == 0)
             return null;
-        return userDtos.stream().map(item -> UserDto.convertToEntity(item)).collect(Collectors.toList());
+        return userDtos.stream().map(UserDto::convertToEntity).collect(Collectors.toList());
     }
 
     @Getter

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,15 +21,19 @@ public class ProjectDto extends BaseDto<Long> {
 
     private String description;
 
+    private String thumbnail;
+
+    private String shortDescription;
+
     private String responsible;
 
     private String languages;
 
     private String other;
 
-    private Timestamp fromDate;
+    private long fromDate;
 
-    private Timestamp toDate;
+    private long toDate;
 
     private Long userId;
 
@@ -41,7 +44,8 @@ public class ProjectDto extends BaseDto<Long> {
         return ProjectDto.builder().title(entity.getTitle()).description(entity.getDescription())
                 .responsible(entity.getResponsible()).languages(entity.getLanguages()).other(entity.getOther())
                 .fromDate(entity.getFromDate()).toDate(entity.getToDate()).id(entity.getId())
-                .createAt(entity.getCreateAt()).upateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
+                .shortDescription(entity.getShortDescription()).thumbnail(entity.getThumbnail())
+                .createAt(entity.getCreateAt()).updateAt(entity.getUpateAt()).createBy(entity.getCreateBy())
                 .updateBy(entity.getUpdateBy()).status(entity.getStatus()).build();
     }
 
@@ -56,6 +60,7 @@ public class ProjectDto extends BaseDto<Long> {
             return null;
         return ProjectEntity.builder().title(projectDto.getTitle()).description(projectDto.getDescription())
                 .responsible(projectDto.getResponsible()).languages(projectDto.getLanguages())
+                .shortDescription(projectDto.getShortDescription()).thumbnail(projectDto.getThumbnail())
                 .other(projectDto.getOther()).fromDate(projectDto.getFromDate()).toDate(projectDto.getToDate())
                 .userId(userId != null ? userId : projectDto.getUserId())
                 .id(projectDto.getId()).status(projectDto.getStatus())

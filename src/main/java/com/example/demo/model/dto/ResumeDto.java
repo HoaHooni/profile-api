@@ -52,7 +52,7 @@ public class ResumeDto extends BaseDto<Long> {
                 .works(WorkDto.convertToDtos(entity.getWorks()))
                 .skills(SkillDto.convertToDtos(entity.getSkills()))
                 .skillMessage(entity.getSkillMessage()).id(entity.getId()).createAt(entity.getCreateAt())
-                .upateAt(entity.getUpateAt()).createBy(entity.getCreateBy()).updateBy(entity.getUpdateBy())
+                .updateAt(entity.getUpateAt()).createBy(entity.getCreateBy()).updateBy(entity.getUpdateBy())
                 .status(entity.getStatus()).build();
     }
 
@@ -66,8 +66,8 @@ public class ResumeDto extends BaseDto<Long> {
         if (resumeDto == null)
             return null;
         return ResumeEntity.builder()
-                .skillMessage(resumeDto.getSkillMessage()).id(resumeDto.getId()).createAt(resumeDto.getCreateAt())
-                .upateAt(resumeDto.getUpateAt()).createBy(resumeDto.getCreateBy()).updateBy(resumeDto.getUpdateBy())
+                .skillMessage(resumeDto.getSkillMessage()).id(resumeDto.getId())
+                .createBy(resumeDto.getCreateBy()).updateBy(resumeDto.getUpdateBy())
                 .status(resumeDto.getStatus()).build();
     }
 
